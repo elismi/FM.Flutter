@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:fm/models/pair.dart';
 
 class Data {
-  final List<String> words;
+  final List<Pair> words;
   Data({
     required this.words,
   });
 
   Data copyWith({
-    List<String>? words,
+    List<Pair>? words,
   }) {
     return Data(
       words: words ?? this.words,
@@ -21,9 +22,9 @@ class Data {
   }
 
   factory Data.fromMap(Map<String, dynamic> map) {
-    return Data(
-      words: List<String>.from((map['data'] as List)),
-    );
+    var list = map['data'] as List;
+    var pairs = list.map<Pair>((json) => Pair.fromMap(json)).toList();
+    return Data(words: pairs);
   }
 
   String toJson() => json.encode(toMap());

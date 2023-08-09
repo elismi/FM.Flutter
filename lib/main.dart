@@ -56,8 +56,8 @@ class _DataScreenState extends State<DataScreen> {
             return ListView(
               children: state.data!.words
                   .map(
-                    (word) => ListTile(
-                      title: Text(word),
+                    (item) => ListTile(
+                      title: Text('${item.type} : ${item.word}'),
                     ),
                   )
                   .toList(),
